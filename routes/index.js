@@ -1,9 +1,27 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const adminRouter = require('./admin')
+const categoryRouter = require('./category')
+const mainCategoryRouter = require('./mainCategory')
+const productsRouter = require('./product')
+const reveiwsRouter = require('./reveiws')
+const subCategoryRouter = require('./subCategory')
+const userRouter = require('./user')
+const vendorRouter = require('./user')
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  return res.status(200).json({
+   message : '🚀Api is runny🚶‍♂️ '
+ })
 });
+
+router.use('/admin',adminRouter);
+router.use('/category',categoryRouter);
+router.use('/mainCategory',mainCategoryRouter);
+router.use('/product',productsRouter);
+router.use('/reveiw',reveiwsRouter);
+router.use('/subCategory',subCategoryRouter);
+router.use('/user',userRouter);
+router.use('/vendor',vendorRouter);
 
 module.exports = router;
