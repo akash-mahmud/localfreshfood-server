@@ -1,11 +1,27 @@
-const express = require('express');
-const router = express.Router();
+exports.createVendor = async (request, resposnce) => {
+ try {
+  
+ } catch (error) {
+  
+ } 
+}
 
+exports.editVendor = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
 
-router.get('/', function(req, res, next) {
-  return res.status(200).json({
-   message : '🚀Api is runny🚶‍♂️ '
- })
-});
+exports.deleteVendor = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
 
-module.exports = router;
+exports.getVendors = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
+
+exports.getVendor = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};

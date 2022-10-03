@@ -1,11 +1,16 @@
-const express = require('express');
-const router = express.Router();
+exports.register = async (request, resposnce) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
 
 
-router.get('/', function(req, res, next) {
-  return res.status(200).json({
-   message : '🚀Api is runny🚶‍♂️ '
- })
-});
-
-module.exports = router;
+exports.getUser = async (request, resposnce) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+};

@@ -66,17 +66,14 @@ module.exports = (sequelize, Sequelize) => {
 
       },
       policies: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
 
       },
       vendor_logo: {
         type: Sequelize.STRING,
 
       },
-      vendor_cover_image: {
-        type: Sequelize.STRING,
 
-    },
     });
   
     return Vendor;

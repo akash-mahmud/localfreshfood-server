@@ -1,6 +1,6 @@
 "use strict";
 
-const { Admin } = require("../models");
+const { User } = require("../models");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
@@ -12,36 +12,34 @@ passport.use(
     },
 
     async function (email, password, done) {
-      const admin = await Admin.findOne({ where: { email: email } });
+      const user = await User.findOne({ where: { email: email } });
 
       console.log("hi");
-      if (!admin) {
-        return done(null, false, { message: "Incorrect adminname." });
+      if (!user) {
+        return done(null, false, { message: "Incorrect username." });
       }
-      const valid = await bcrypt.compare(password, admin.password);
+      const valid = await bcrypt.compare(password, user.password);
 
       if (!valid) {
         return done(null, false, { message: "Incorrect password." });
       }
 
-      return done(null, admin);
+      return done(null, user);
     }
   )
 );
 
-passport.serializeUser(function (admin, done) {
+passport.serializeUser(function (user, done) {
   console.log("serializing");
-  console.log(admin.id);
-  done(null, admin.id);
+  console.log(user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(async function (id, done) {
-  const admin = await Admin.findOne({ where: { id } });
+  const user = await User.findOne({ where: { id } });
 
-  // if (!admin) {
-  //   done(err, user);
-  // }
-  done(null, admin);
+
+  done(null, user);
 });
 
 module.exports = passport;

@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 // const sequelize = new Sequelize("sqlite::memory:", { logging: false });
 
 const sequelize = new Sequelize(
-  "postgres://postgres:1234@localhost:5432/localfreshfoods",
+  "postgres://postgres:1234@localhost:5432/test",
   { logging: false }
 );
 
@@ -26,9 +26,7 @@ const Product = ProducModel(sequelize, Sequelize);
 const Review = ReveiwModel(sequelize, Sequelize);
 const Vendor = VendorModel(sequelize, Sequelize);
 
-sequelize.sync().then(() => {
-  console.log(`Database & tables created!`);
-});
+
 
 Admin.hasMany(Category);
 
@@ -62,6 +60,10 @@ Vendor.belongsTo(User);
 Vendor.belongsTo(Category);
 Vendor.hasMany(Product);
 
+
+sequelize.sync().then(() => {
+  console.log(`Database & tables created!`);
+});
 module.exports = {
   Admin,
   User,

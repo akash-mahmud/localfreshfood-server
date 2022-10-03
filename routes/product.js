@@ -2,10 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get('/', function(req, res, next) {
-  return res.status(200).json({
-   message : '🚀Api is runny🚶‍♂️ '
- })
-});
+const {
+  createProduct,
+  editProduct,
+  deleteProduct,
+  getProduct,
+} = require("../controllers/product");
+
+router.get("/product", getProduct);
+router.post("/product", createProduct);
+router.patch("/product/:id", editProduct);
+router.delete("/product/:id", deleteProduct);
 
 module.exports = router;

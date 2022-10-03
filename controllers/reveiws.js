@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
+exports.createReveiw = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
 
 
-router.get('/', function(req, res, next) {
-  return res.status(200).json({
-   message : '🚀Api is runny🚶‍♂️ '
- })
-});
 
-module.exports = router;
+exports.getReveiws = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
+

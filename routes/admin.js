@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const passportLocal = require("../middlewares/passport-local-admin");
+const {
+  login, 
+  AdminRegister
+} = require("../controllers/admin");
 
-router.get('/', function(req, res, next) {
-    return res.status(200).json({
-     message : '🚀Api is runny🚶‍♂️ '
-   })
-  });
-
+router.post("/login", passportLocal.authenticate("local"), login);
+router.post("/register", AdminRegister);
 
 module.exports = router;

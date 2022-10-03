@@ -2,10 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get('/', function(req, res, next) {
-  return res.status(200).json({
-   message : '🚀Api is runny🚶‍♂️ '
- })
-});
+const {
+  createMainCategory,
+  editMainCategory,
+  deleteMainCategory,
+  getMainCategory
+} = require("../controllers/mainCategory");
+
+router.get("/maincategory", getMainCategory);
+router.post("/maincategory", createMainCategory);
+router.patch("/maincategory/:id", editMainCategory);
+router.delete("/maincategory/:id", deleteMainCategory);
 
 module.exports = router;

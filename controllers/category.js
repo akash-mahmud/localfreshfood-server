@@ -1,11 +1,24 @@
-const express = require('express');
-const router = express.Router();
+exports.createCategory = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
 
+exports.editCategory = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
 
-router.get('/', function(req, res, next) {
-  return res.status(200).json({
-   message : '🚀Api is runny🚶‍♂️ '
- })
-});
+exports.deleteCategory = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
 
-module.exports = router;
+exports.getCategorys = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
+
+exports.getCategory = async (request, resposnce) => {
+  try {
+  } catch (error) {}
+};
