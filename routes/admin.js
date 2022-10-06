@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const passportLocal = require("../middlewares/passport-local-admin");
+const passportLocal = require("../middlewares/passportLocal");
 const {
   login, 
   AdminRegister

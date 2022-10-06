@@ -13,10 +13,7 @@ exports.deleteMainCategory = async (request, resposnce) => {
   } catch (error) {}
 };
 
-exports.getMainCategorys = async (request, resposnce) => {
-  try {
-  } catch (error) {}
-};
+
 
 exports.getMainCategory = async (request, resposnce) => {
   try {
