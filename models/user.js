@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     user_type: {
       type: Sequelize.STRING,
+      required: true,
     },
     phone: {
       type: Sequelize.STRING,
@@ -21,10 +22,12 @@ module.exports = (sequelize, Sequelize) => {
     email: {
       type: Sequelize.STRING,
       unique: true,
+      required: true,
     },
 
     password: {
       type: Sequelize.STRING,
+      required: true,
     },
     address: {
       type: Sequelize.STRING,

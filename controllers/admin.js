@@ -2,17 +2,15 @@ const { hashPassword } = require("../helpers/hashPassword");
 const { Admin } = require("../models");
 exports.login = async (request, resposnce) => {
   try {
-
-
-      return resposnce.json({
-        loggedIn: true,
-        admin: request.user,
-      });
+    return resposnce.json({
+      loggedIn: true,
+      admin: request.user,
+    });
   } catch (error) {
-      return resposnce.json({
-        loggedIn: false,
-        message: error.message,
-      });
+    return resposnce.json({
+      loggedIn: false,
+      message: error.message,
+    });
   }
 };
 

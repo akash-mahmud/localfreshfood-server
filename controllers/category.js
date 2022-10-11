@@ -1,21 +1,21 @@
-const {Category} =  require('../models');
+const { Category } = require("../models");
 exports.createCategory = async (request, resposnce) => {
   try {
     if (!request.body.name) {
       return resposnce.json({
-        message:'category name is required'
-      })
+        message: "category name is required",
+      });
     }
     await Category.create({
       name: request.body.name,
     });
-          return resposnce.json({
-            message: 'success',
-          });
+    return resposnce.json({
+      message: "success",
+    });
   } catch (error) {
-          return resposnce.json({
-            message: error.message,
-          });
+    return resposnce.json({
+      message: error.message,
+    });
   }
 };
 
@@ -27,8 +27,8 @@ exports.editCategory = async (request, resposnce) => {
       });
     }
     const category = await Category.findOne({
-      where:{id : request.params.id}
-    })
+      where: { id: request.params.id },
+    });
     if (!category) {
       return resposnce.json({
         message: "category does not exist",
@@ -61,7 +61,6 @@ exports.deleteCategory = async (request, responsce) => {
     });
   }
 };
-
 
 exports.getCategory = async (request, resposnce) => {
   try {
