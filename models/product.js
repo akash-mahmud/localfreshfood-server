@@ -26,6 +26,18 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BOOLEAN,
       default: false,
     },
+    pageTitle: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    pageDesc: {
+      type: Sequelize.STRING(400),
+      allowNull: false,
+    },
+    tags: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   });
 
   return Product;

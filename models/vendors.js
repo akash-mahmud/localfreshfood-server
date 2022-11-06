@@ -6,15 +6,15 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
-        },
-        store_name: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
+      },
+      store_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
 
-        full_name_of_vendor: {
-          type: Sequelize.STRING,
-          allowNull: false,
+      full_name_of_vendor: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
@@ -27,11 +27,11 @@ module.exports = (sequelize, Sequelize) => {
       address: {
         type: Sequelize.STRING,
         allowNull: false,
-    },
+      },
 
-    county: {
-      type: Sequelize.STRING,
-      allowNull: false,
+      county: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       country: {
         type: Sequelize.STRING,
@@ -43,37 +43,40 @@ module.exports = (sequelize, Sequelize) => {
       },
       location: {
         type: Sequelize.JSON,
-       
       },
       description: {
         type: Sequelize.TEXT,
-
-    },
-    social_media: {
-      type: Sequelize.JSON,
-
+      },
+      social_media: {
+        type: Sequelize.JSON,
       },
       meta_title: {
         type: Sequelize.STRING,
-
       },
       meta_desc: {
         type: Sequelize.STRING,
-
       },
       meta_tags: {
         type: Sequelize.STRING,
-
       },
       policies: {
         type: Sequelize.JSON,
-
       },
       vendor_logo: {
         type: Sequelize.STRING,
-
       },
-
+      pageTitle: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      pageDesc: {
+        type: Sequelize.STRING(400),
+        allowNull: false,
+      },
+      tags: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   
     return Vendor;

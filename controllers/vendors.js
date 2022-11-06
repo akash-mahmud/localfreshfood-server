@@ -20,7 +20,7 @@ exports.createVendor = async (request, resposnce) => {
       meta_tags,
       policies,
       vendor_logo,
-      categoryId,
+      categoryId,pageTitle, pageDesc, tags
     } = request.body;
     await Vendor({
       store_name,
@@ -41,6 +41,9 @@ exports.createVendor = async (request, resposnce) => {
       policies,
       vendor_logo,
       categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
     });
     return resposnce.json({
       message: "success",
@@ -67,7 +70,7 @@ exports.editVendor = async (request, resposnce) => {
     }
     const {
       store_name,
-
+pageTitle, pageDesc, tags,
       full_name_of_vendor,
       email,
       phone,
@@ -104,6 +107,9 @@ exports.editVendor = async (request, resposnce) => {
       policies,
       vendor_logo,
       categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
     });
         return resposnce.json({
           message: "success",

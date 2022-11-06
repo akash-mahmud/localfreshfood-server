@@ -1,9 +1,9 @@
 const { MainCategory } = require("../models");
 exports.createMainCategory = async (request, resposnce) => {
   try {
-    const { name } = request.body;
+    const { name ,pageTitle, pageDesc, tags } = request.body;
     await MainCategory.create({
-      name,
+      name,pageTitle, pageDesc, tags
     });
     return resposnce.json({
       message: "success",
@@ -13,7 +13,7 @@ exports.createMainCategory = async (request, resposnce) => {
 
 exports.editMainCategory = async (request, resposnce) => {
   try {
-    const { name } = request.body;
+    const { name, pageTitle, pageDesc, tags } = request.body;
     const { id } = request.params;
     const mainCategory = await MainCategory.findOne({
       where: {
@@ -29,6 +29,9 @@ exports.editMainCategory = async (request, resposnce) => {
 
     await mainCategory.update({
       name,
+      pageTitle,
+      pageDesc,
+      tags,
     });
     return resposnce.json({
       message: "success",

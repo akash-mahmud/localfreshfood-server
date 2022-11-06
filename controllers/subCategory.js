@@ -1,13 +1,23 @@
 const { SubCategory } = require("../models");
 exports.createSubCategory = async (request, resposnce) => {
   try {
-    const { name, isMainCategoryItem, mainCategoryId, categoryId } =
-      request.body;
+    const {
+      name,
+      isMainCategoryItem,
+      mainCategoryId,
+      categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
+    } = request.body;
     await SubCategory.create({
       name,
       isMainCategoryItem,
       mainCategoryId,
       categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
     });
     return resposnce.json({
       message: "success",
@@ -31,13 +41,23 @@ exports.editSubCategory = async (request, resposnce) => {
         message: "not exist",
       });
     }
-    const { name, isMainCategoryItem, mainCategoryId, categoryId } =
-      request.body;
+    const {
+      name,
+      isMainCategoryItem,
+      mainCategoryId,
+      categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
+    } = request.body;
     await subCategory.update({
       name,
       isMainCategoryItem,
       mainCategoryId,
       categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
     });
     return resposnce.json({
       message: "success",
@@ -72,6 +92,7 @@ exports.getSubCategorys = async (request, resposnce) => {
 };
 
 exports.getSubCategory = async (request, resposnce) => {
+  
   try {
   } catch (error) {
     return resposnce.json({

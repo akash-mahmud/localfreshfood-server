@@ -11,12 +11,12 @@ exports.createProduct = async (request, resposnce) => {
       isMainCategoryItem,
       categoryId,
       subCatgoryId,
-      mainCategoryId,
+      mainCategoryId,pageTitle, pageDesc, tags
     } = request.body;
     await Product.create({
       name,
       images,
-
+pageTitle, pageDesc, tags,
       description,
       price,
       sku,
@@ -60,6 +60,9 @@ exports.editProduct = async (request, resposnce) => {
       categoryId,
       subCatgoryId,
       mainCategoryId,
+      pageTitle,
+      pageDesc,
+      tags,
     } = request.body;
     await product.update({
       name,
@@ -73,6 +76,7 @@ exports.editProduct = async (request, resposnce) => {
       categoryId,
       subCatgoryId,
       mainCategoryId,
+      pageTitle, pageDesc, tags
     });
     return resposnce.json({
       message: "success",

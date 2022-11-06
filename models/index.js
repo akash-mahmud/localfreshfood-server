@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 // const sequelize = new Sequelize("sqlite::memory:", { logging: false });
 
 const sequelize = new Sequelize(
-  "postgres://postgres:1234@localhost:5432/test",
+  "postgres://postgres:1234@localhost:5432/localfreshfoods",
   { logging: false }
 );
 

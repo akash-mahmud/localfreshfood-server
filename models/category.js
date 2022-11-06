@@ -6,15 +6,24 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
-      },
-      name: {
-          type: Sequelize.STRING,
-          allowNull: false,
-      },
+    },
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
 
-
-
-
+    pageTitle: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    pageDesc: {
+      type: Sequelize.STRING(400),
+      allowNull: false,
+    },
+    tags: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   });
 
   return Category;
