@@ -8,10 +8,11 @@ const {
   deleteSubCategory,
   getSubCategory,
 } = require("../controllers/subCategory");
+const auth = require('../middlewares/auth');
 
-router.get("/subcategory", getSubCategory);
-router.post("/subcategory", createSubCategory);
-router.patch("/subcategory/:id", editSubCategory);
-router.delete("/subcategory/:id", deleteSubCategory);
+router.get("/", getSubCategory);
+router.post("/",auth, createSubCategory);
+router.patch("/:id",auth, editSubCategory);
+router.delete("/:id", auth, deleteSubCategory);
 
 module.exports = router;

@@ -8,7 +8,11 @@ exports.createMainCategory = async (request, resposnce) => {
     return resposnce.json({
       message: "success",
     });
-  } catch (error) {}
+  } catch (error) {
+       return resposnce.json({
+         message: error.message,
+       });
+  }
 };
 
 exports.editMainCategory = async (request, resposnce) => {

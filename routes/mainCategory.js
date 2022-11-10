@@ -8,10 +8,11 @@ const {
   deleteMainCategory,
   getMainCategory
 } = require("../controllers/mainCategory");
+const auth = require('../middlewares/auth');
 
-router.get("/maincategory", getMainCategory);
-router.post("/maincategory", createMainCategory);
-router.patch("/maincategory/:id", editMainCategory);
-router.delete("/maincategory/:id", deleteMainCategory);
+router.get("/", getMainCategory);
+router.post("/",auth, createMainCategory);
+router.patch("/:id",auth, editMainCategory);
+router.delete("/:id",auth, deleteMainCategory);
 
 module.exports = router;
