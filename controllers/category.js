@@ -6,9 +6,7 @@ exports.createCategory = async (request, resposnce) => {
         message: "category name is required",
       });
     }
-    const {
-      name , pageTitle , pageDesc , tags
-    } = req.body
+    const { name, pageTitle, pageDesc, tags } = request.body;
     await Category.create({
       name,
       pageTitle,
@@ -40,7 +38,7 @@ exports.editCategory = async (request, resposnce) => {
         message: "category does not exist",
       });
     }
-      const { name, pageTitle, pageDesc, tags } = req.body;
+      const { name, pageTitle, pageDesc, tags } = request.body;
     await category.update({
       name,
       pageTitle,
