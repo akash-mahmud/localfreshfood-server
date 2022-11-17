@@ -1,4 +1,6 @@
 const { MainCategory } = require("../models");
+const { getPagingData } = require("../helpers/getPagingData");
+const { getPagination } = require("../helpers/pagination");
 exports.createMainCategory = async (request, resposnce) => {
   try {
     const { name ,pageTitle, pageDesc, tags } = request.body;
@@ -54,5 +56,19 @@ exports.deleteMainCategory = async (request, resposnce) => {
 
 exports.getMainCategory = async (request, resposnce) => {
   try {
-  } catch (error) {}
+    const { page, size } = request.query;
+    const { limit, offset } = getPagination(page, size);
+    const mainCategory = await MainCategory.findAndCountAll({
+      order: [["createdAt", "DESC"]],
+      limit,
+      offset,
+    });
+    const responseData = getPagingData(mainCategory, page, limit, "mainCategories");
+    return resposnce.json({
+      message: "success",
+      paginatedData: responseData,
+    });
+  } catch (error) {
+    return resposnce.send(error.message);
+  }
 };
