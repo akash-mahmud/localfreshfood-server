@@ -28,7 +28,7 @@ jobs:
           cd ..
           cd home
           cd localfreshfood-server
-          git pull origin master
-          git status
-          npm install --only=prod
+          sudo git pull origin master
+          sudo git status
+          sudo yarn install --only=prod
           pm2 restart localfreshfoods-server
