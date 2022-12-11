@@ -16,7 +16,7 @@ const MainCategoryModel = require("./mainCategory");
 const SubCategoryModel = require("./subCategory");
 const ProducModel = require("./product");
 const ReveiwModel = require("./reveiws");
-const VendorModel = require("./vendors");
+const VendorModel = require("./vendors"); 
 
 const Admin = AdminModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
