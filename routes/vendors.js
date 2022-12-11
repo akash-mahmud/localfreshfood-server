@@ -7,11 +7,12 @@ const {
   editVendor,
   deleteVendor,
   getVendor,
+  getVendors,
 } = require("../controllers/vendors");
 
-router.get("/vendor", getVendor);
-router.post("/vendor", createVendor);
-router.patch("/vendor/:id", editVendor);
-router.delete("/vendor/:id", deleteVendor);
+router.get("/", getVendors);
+router.post("/", createVendor);
+router.patch("/:id", editVendor);
+router.delete("/:id", deleteVendor);
 
 module.exports = router;

@@ -18,3 +18,15 @@ exports.getUser = async (request, resposnce) => {
         });
   }
 };
+
+
+exports.getVendorUsers = async (request, resposnce) => {
+
+  try {
+    
+  } catch (error) {
+    return resposnce.json({
+      message: error.message,
+    });
+  }
+};

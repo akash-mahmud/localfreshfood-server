@@ -4,6 +4,7 @@ const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
   "postgres://postgres:1234@localhost:5432/localfreshfoods",
+  // "postgres://localfre_admin:z0?3X]9-5V%t@localhost:5432/localfre_localfreshfoods",
   { logging: false }
 );
 

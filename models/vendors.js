@@ -50,15 +50,7 @@ module.exports = (sequelize, Sequelize) => {
       social_media: {
         type: Sequelize.JSON,
       },
-      meta_title: {
-        type: Sequelize.STRING,
-      },
-      meta_desc: {
-        type: Sequelize.STRING,
-      },
-      meta_tags: {
-        type: Sequelize.STRING,
-      },
+
       policies: {
         type: Sequelize.JSON,
       },

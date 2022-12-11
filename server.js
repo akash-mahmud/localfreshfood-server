@@ -23,6 +23,9 @@ app.use(
       "http://127.0.0.1:5173",
       "http://127.0.0.1:3000",
       "http://localhost:3000",
+      "https://www.localfreshfoods.co.uk",
+      "https://admin.localfreshfoods.co.uk",
+      "https://api.localfreshfoods.co.uk",
     ],
   })
 );

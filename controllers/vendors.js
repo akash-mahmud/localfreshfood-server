@@ -1,4 +1,6 @@
 const { Vendor } = require("../models");
+const { getPagingData } = require("../helpers/getPagingData");
+const { getPagination } = require("../helpers/pagination");
 exports.createVendor = async (request, resposnce) => {
   try {
     const {
@@ -20,11 +22,15 @@ exports.createVendor = async (request, resposnce) => {
       meta_tags,
       policies,
       vendor_logo,
-      categoryId,pageTitle, pageDesc, tags
+      categoryId,
+      pageTitle,
+      pageDesc,
+      tags,
+      userId,
     } = request.body;
-    await Vendor({
+    await Vendor.create({
       store_name,
-      userId: request.user.id,
+      userId,
       full_name_of_vendor,
       email,
       phone,
@@ -70,7 +76,9 @@ exports.editVendor = async (request, resposnce) => {
     }
     const {
       store_name,
-pageTitle, pageDesc, tags,
+      pageTitle,
+      pageDesc,
+      tags,
       full_name_of_vendor,
       email,
       phone,
@@ -111,9 +119,9 @@ pageTitle, pageDesc, tags,
       pageDesc,
       tags,
     });
-        return resposnce.json({
-          message: "success",
-        });
+    return resposnce.json({
+      message: "success",
+    });
   } catch (error) {
     return resposnce.json({
       message: error.message,
@@ -138,6 +146,19 @@ exports.deleteVendor = async (request, resposnce) => {
 
 exports.getVendors = async (request, resposnce) => {
   try {
+    const { page, size } = request.query;
+    const { limit, offset } = getPagination(page, size);
+    const vendors = await Vendor.findAndCountAll({
+      order: [["createdAt", "DESC"]],
+      limit,
+      offset,
+    });
+
+    const responseData = getPagingData(vendors, page, limit, "vendors");
+    return resposnce.json({
+      message: "success",
+      paginatedData: responseData,
+    });
   } catch (error) {
     return resposnce.json({
       message: error.message,

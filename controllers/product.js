@@ -1,4 +1,6 @@
 const { Product } = require("../models");
+const { getPagingData } = require("../helpers/getPagingData");
+const { getPagination } = require("../helpers/pagination");
 exports.createProduct = async (request, resposnce) => {
   try {
     const {
@@ -105,9 +107,19 @@ exports.deleteProduct = async (request, resposnce) => {
 
 exports.getProducts = async (request, resposnce) => {
   try {
-    return resposnce.json({
-      message: "success",
-    });
+        const { page, size } = request.query;
+        const { limit, offset } = getPagination(page, size);
+        const products = await Product.findAndCountAll({
+          order: [["createdAt", "DESC"]],
+          limit,
+          offset,
+        });
+        const responseData = getPagingData(products, page, limit, "products");
+        return resposnce.json({
+          message: "success",
+          paginatedData: responseData,
+        });
+
   } catch (error) {
     return resposnce.json({
       message: error.message,

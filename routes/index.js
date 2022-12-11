@@ -7,7 +7,7 @@ const productsRouter = require('./product')
 const reveiwsRouter = require('./reveiws')
 const subCategoryRouter = require('./subCategory')
 const userRouter = require('./user')
-const vendorRouter = require('./user')
+const vendorRouter = require('./vendors')
 
 router.get('/', function(req, res, next) {
   return res.status(200).json({
