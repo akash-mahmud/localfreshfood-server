@@ -8,6 +8,8 @@ const reveiwsRouter = require('./reveiws')
 const subCategoryRouter = require('./subCategory')
 const userRouter = require('./user')
 const vendorRouter = require('./vendors')
+const mediaRouter = require("./media");
+const sellerRouter = require("./seller");
 
 router.get('/', function(req, res, next) {
   return res.status(200).json({
@@ -23,5 +25,7 @@ router.use('/reveiw',reveiwsRouter);
 router.use('/subCategory',subCategoryRouter);
 router.use('/user',userRouter);
 router.use('/vendor',vendorRouter);
+router.use("/media", mediaRouter);
+router.use("/seller", sellerRouter);
 
 module.exports = router;

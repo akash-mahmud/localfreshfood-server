@@ -1,4 +1,4 @@
-const { Vendor } = require("../models");
+const { Vendor, Category } = require("../models");
 const { getPagingData } = require("../helpers/getPagingData");
 const { getPagination } = require("../helpers/pagination");
 exports.createVendor = async (request, resposnce) => {
@@ -152,6 +152,11 @@ exports.getVendors = async (request, resposnce) => {
       order: [["createdAt", "DESC"]],
       limit,
       offset,
+      include: [
+        {
+          model: Category,
+        },
+      ],
     });
 
     const responseData = getPagingData(vendors, page, limit, "vendors");
