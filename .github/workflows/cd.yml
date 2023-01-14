@@ -33,4 +33,4 @@ jobs:
           sudo yarn install --only=prod
           sudo npx sequelize-cli db:create
           sudo npx sequelize-cli db:migrate
-          restart localfreshfoods-server
+          pm2 restart localfreshfoods-server
