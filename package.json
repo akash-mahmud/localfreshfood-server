@@ -27,5 +27,7 @@
     "pm2": "^5.2.2",
     "sequelize": "^6.21.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
+  }
 }

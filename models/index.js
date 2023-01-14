@@ -1,77 +1,38 @@
-const Sequelize = require("sequelize");
+'use strict';
 
-// const sequelize = new Sequelize("sqlite::memory:", { logging: false });
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const process = require('process');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
-const sequelize = new Sequelize(
-  // "postgres://postgres:1234@localhost:5432/localfreshfoods",
-  "postgres://postgres:1234@localhost:5432/development",
-  { logging: false }
-);
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
-const AdminModel = require("./admin");
-const UserModel = require("./user");
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
 
-const CategoryModel = require("./category");
-const MainCategoryModel = require("./mainCategory");
-const SubCategoryModel = require("./subCategory");
-const ProducModel = require("./product");
-const ReveiwModel = require("./reveiws");
-const VendorModel = require("./vendors"); 
-
-const Admin = AdminModel(sequelize, Sequelize);
-const User = UserModel(sequelize, Sequelize);
-const Category = CategoryModel(sequelize, Sequelize);
-const MainCategory = MainCategoryModel(sequelize, Sequelize);
-const SubCategory = SubCategoryModel(sequelize, Sequelize);
-const Product = ProducModel(sequelize, Sequelize);
-const Review = ReveiwModel(sequelize, Sequelize);
-const Vendor = VendorModel(sequelize, Sequelize);
-
-
-
-Admin.hasMany(Category);
-
-Category.hasMany(SubCategory);
-Category.hasMany(Product);
-Category.hasMany(Vendor);
-Category.belongsTo(Admin);
-
-MainCategory.hasMany(Product);
-MainCategory.hasMany(SubCategory);
-
-SubCategory.hasMany(Product);
-SubCategory.belongsTo(Category);
-SubCategory.belongsTo(MainCategory);
-
-User.hasMany(Review);
-User.hasMany(Product);
-User.hasMany(Vendor);
-
-Review.belongsTo(User);
-Review.belongsTo(Product);
-
-Product.hasMany(Review);
-Product.belongsTo(Vendor);
-Product.belongsTo(MainCategory);
-Product.belongsTo(SubCategory);
-Product.belongsTo(Category);
-Product.belongsTo(User);
-
-Vendor.belongsTo(User);
-Vendor.belongsTo(Category);
-Vendor.hasMany(Product);
-
-
-sequelize.sync().then(() => {
-  console.log(`Database & tables created!`);
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
 });
-module.exports = {
-  Admin,
-  User,
-  Category,
-  MainCategory,
-  SubCategory,
-  Product,
-  Review,
-  Vendor,
-};
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;

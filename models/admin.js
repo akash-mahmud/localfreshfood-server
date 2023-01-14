@@ -1,51 +1,41 @@
-module.exports = (sequelize, Sequelize) => {
-  const Admin = sequelize.define("admin", {
-    id: {
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Admin extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  Admin.init(
+    {
+      id: DataTypes.UUID,
 
-    name: {
-      type: Sequelize.STRING,
-      required: true,
-    },
-    email: {
-      type: Sequelize.STRING,
-      unique: true,
-      required: true,
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      phone: DataTypes.STRING,
+      address: DataTypes.STRING,
+      country: DataTypes.STRING,
+      postcode: DataTypes.STRING,
 
+      resetPasswordToken: DataTypes.STRING,
+      resetPasswordExpires: DataTypes.DATE,
+      isAdmin: DataTypes.BOOLEAN,
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      phone: DataTypes.STRING,
+      password: DataTypes.STRING,
     },
-    phone: {
-      type: Sequelize.STRING,
-    },
-    address: {
-      type: Sequelize.STRING,
-    },
-    country: {
-      type: Sequelize.STRING,
-    },
-    postcode: {
-      type: Sequelize.STRING,
-    },
-
-    password: {
-      type: Sequelize.STRING,
-
-      required: true,
-    },
-
-    resetPasswordToken: {
-      type: Sequelize.STRING,
-    },
-    resetPasswordExpires: {
-      type: Sequelize.DATE,
-    },
-    isAdmin: {
-      type: Sequelize.BOOLEAN,
-    },
-  });
-
+    {
+      sequelize,
+      modelName: "Admin",
+    }
+  );
   return Admin;
 };
