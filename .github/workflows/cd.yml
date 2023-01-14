@@ -31,4 +31,6 @@ jobs:
           sudo git pull origin master
           sudo git status
           sudo yarn install --only=prod
-          pm2 restart localfreshfoods-server
+          sudo npx sequelize-cli db:create
+          sudo npx sequelize-cli db:migrate
+          restart localfreshfoods-server
