@@ -1,10 +1,9 @@
 'use strict';
-
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Admin extends Model {
+  class SubCategory extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,29 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Admin.init(
+  SubCategory.init(
     {
       // id: DataTypes.UUID,
-
       name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      phone: DataTypes.STRING,
-      address: DataTypes.STRING,
-      country: DataTypes.STRING,
-      postcode: DataTypes.STRING,
-
-      resetPasswordToken: DataTypes.STRING,
-      resetPasswordExpires: DataTypes.DATE,
-      isAdmin: DataTypes.BOOLEAN,
-
-
-
-      password: DataTypes.STRING,
+      pageTitle: DataTypes.STRING,
+      pageDesc: DataTypes.STRING,
+      tags: DataTypes.STRING,
+      isMainCategoryItem: DataTypes.BOOLEAN,
     },
     {
       sequelize,
-      modelName: "Admin",
+      modelName: "SubCategory",
     }
   );
-  return Admin;
+  return SubCategory;
 };

@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Categories", {
+    await queryInterface.createTable("Products", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -11,9 +11,24 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
+      },
+      images: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
 
+      description: {
+        type: Sequelize.TEXT,
+      },
+      price: {
+        type: Sequelize.REAL,
+      },
+      sku: {
+        type: Sequelize.STRING,
+      },
+      isMainCategoryItem: {
+        type: Sequelize.BOOLEAN,
+        default: false,
+      },
       pageTitle: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -26,9 +41,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Categories');
+    await queryInterface.dropTable('Products');
   }
 };
